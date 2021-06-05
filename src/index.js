@@ -1,5 +1,6 @@
 const { Client } = require('discord.js');
 const Database = require("@replit/database")
+const http = require('http');
 const { prefix } = require('./config.json');
 const command = require('./command');
 
@@ -23,3 +24,13 @@ bot.on('message', async msg => {
 db.get("token").then(token => {
 	bot.login(token);
 });
+let connectedAmount = 0;
+const server = http.createServer((req, res) => {
+    res.writeHead(200);
+    res.end('Pinged: ' + connectedAmount.toString());
+});
+
+server.on('connection', () => {
+    connectedAmount++;
+});
+server.listen(3000);
