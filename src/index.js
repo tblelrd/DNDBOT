@@ -1,7 +1,9 @@
 const { Client } = require('discord.js');
-const { token, prefix } = require('./config.json');
+const Database = require("@replit/database")
+const { prefix } = require('./config.json');
 const command = require('./command');
 
+const db = new Database()
 const bot = new Client();
 
 bot.once('ready', () => {
@@ -18,4 +20,6 @@ bot.on('message', async msg => {
     await command(cmd, args, msg, bot);
 });
 
-bot.login(token);
+db.get("token").then(token => {
+	bot.login(token);
+});

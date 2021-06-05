@@ -26,7 +26,7 @@ const command = async (cmd, args, msg, bot) => {
 
             e.setTitle(ab.full_name)
             .setColor('#ff0000')
-            .setDescription(`*${ab.index}*\n${ab.desc?.join('\n')}`)
+            .setDescription(`*${ab.index}*\n${ab.desc.join('\n')}`)
             .addField('Skills', apiref(ab.skills));
 
             msg.channel.send(e);
@@ -59,7 +59,7 @@ const command = async (cmd, args, msg, bot) => {
             .setDescription(`*${prof.index}*`)
             .addField('Classes', apiref(prof.classes), true)
             .addField('Races', apiref(prof.races), true)
-            .addField('References', prof.references[0] ? prof.references.map(v => `\`${v?.name}\` -- \`${v.type}\``) : 'None', true);
+            .addField('References', prof.references[0] ? prof.references.map(v => `\`${v.name}\` -- \`${v.type}\``) : 'None', true);
 
             msg.channel.send(e);
 
@@ -226,7 +226,7 @@ const errorCheck = (res, message=null, msg=null) => {
 
 const apiref = (ref) => {
     if(!ref[0]) return 'None'
-    return ref.map(v => `\`${v?.name}\``).join('\n')
+    return ref.map(v => `\`${v.name}\``).join('\n')
 }
 
 const checkArgs = (args) => {
