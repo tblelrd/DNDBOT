@@ -200,7 +200,7 @@ const command = async (cmd, args, msg, bot) => {
         break;
 
         case 'help':
-            msg.channel.send('If you want to enter something that is two words like `Animal Handling`, you would need to enter `animal-handling`!\nUse Example: `ƒabilityscore str`\nList of commands so far:\n`abilityscores` `skills` `proficiencies` `languages` `alignments` `backgrounds` `classes` `subclasses` `features` `races` `subraces`');
+            msg.channel.send('If you want to enter something that is two words like `Animal Handling`, you would need to enter `animal-handling`!\nUse Example: `dnd!abilityscore str`\nList of commands so far:\n`abilityscores` `skills` `proficiencies` `languages` `alignments` `backgrounds` `classes` `subclasses` `features` `races` `subraces`');
         break;
 
         default:
