@@ -161,7 +161,7 @@ const command = async (cmd, args, msg, bot) => {
                 `**Size**\n${race.size_description}\n\n` +
                 `**Language**\n${race.language_desc}\n\n`
             )
-            .addField('Ability Bonus', `${race.ability_bonuses.map(v => `${v.ability_score.name}: ${v.bonus}`)}`, true)
+            .addField('Ability Bonus', `${race.ability_bonuses.map(v => `${v.ability_score.name}: ${v.bonus}`).join('\n')}`, true)
             .addField('Traits', apiref(race.traits), true)
             .addField('Subraces', apiref(race.subraces), true);
 
