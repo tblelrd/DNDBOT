@@ -183,6 +183,35 @@ const command = async (cmd, args, msg, bot) => {
             msg.channel.send(e);
         break;
 
+        case 'traits':
+        case 'trait':
+            if(checkArgs(args)) return;
+            const trait = await dndapi(`traits/${args[1].toLowerCase()}`);
+            if(errorCheck(trait, msg)) return;
+
+            e.setTitle(trait.name)
+            .setDescription(`*${trait.index}*\n${trait.desc[0]}`)
+            .addField('Races', apiref(trait.races), true)
+            .addField('Subraces', apiref(trait.subraces), true)
+            .addField('Proficiencies', apiref(trait.proficiencies), true);
+
+            msg.channel.send(e);
+        break;
+
+        case 'equipmentscategories':
+        case 'equipmentcategory':
+        case 'equipcat':
+            if(checkArgs(args)) return;
+            const equipcat = await dndapi(`equipment-categories/${args[1].toLowerCase()}`);
+            if(errorCheck(equipcat, msg)) return;
+
+            e.setTitle(equipcat.name)
+            .setDescription(`*${equipcat.index}*`)
+            .addField('Equipment', apiref(equipcat.equipment));
+
+            msg.channel.send(e);   
+        break;
+
         case 'test':
             if(checkArgs(args)) return;
             const test = await dndapi(`test/${args[1].toLowerCase()}`);
@@ -200,7 +229,7 @@ const command = async (cmd, args, msg, bot) => {
         break;
 
         case 'help':
-            msg.channel.send('If you want to enter something that is two words like `Animal Handling`, you would need to enter `animal-handling`!\nUse Example: `ƒabilityscore str`\nList of commands so far:\n`abilityscores` `skills` `proficiencies` `languages` `alignments` `backgrounds` `classes` `subclasses` `features` `races` `subraces`');
+            msg.channel.send('If you want to enter something that is two words like `Animal Handling`, you would need to enter `animal-handling`!\nUse Example: `dnd!abilityscore str`\nList of commands so far:\n`abilityscores` `skills` `proficiencies` `languages` `alignments` `backgrounds` `classes` `subclasses` `features` `races` `subraces` `traits` `equipmentcategory`');
         break;
 
         default:
